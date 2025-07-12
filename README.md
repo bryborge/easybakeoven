@@ -19,22 +19,20 @@ on a development system.
 - [Podman Compose](https://github.com/containers/podman-compose)
     - (This ships with Podman by default)
 
-### Installation
+### Defining a New Recipe
 
-1.  Clone the project and change into the project directory.
+**TODO:** script out a process to easily create a new recipe from template
 
-    ```sh
-    git clone https://github.com/bryborge/easybakeoven && cd $_
-    ```
+TBD ...
 
-2.  Use podman compose to build the container.
+### Generating an Artifact
 
-    ```sh
-    podman compose build
-    ```
+To kick off the artifact generation process, simply run the `generate.sh`
+convenience script at the root of the project and pass in the name of the
+recipe you want to generate an artifact against.
 
-3.  Run the container and remote into it.
+For example, generate an image from the provided template recipe:
 
-    ```sh
-    podman compose run --build rpi_imagegen bash
-    ```
+```sh
+./generate.sh _template
+```

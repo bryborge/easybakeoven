@@ -35,3 +35,5 @@ WORKDIR /home/${USER}
 
 RUN /bin/bash -c 'cp -r /rpi-image-gen ~/'
 WORKDIR /home/${USER}/rpi-image-gen
+
+COPY scripts/generate-artifact.sh /home/${USER}/

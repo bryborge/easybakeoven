@@ -1,0 +1,12 @@
+---
+name: customizations
+mmdebstrap:
+  # setup-hooks:     # perform ops prior to pkg download/extract
+  # essential-hooks: # perform ops prior to installing non-essential pkgs
+  # customize-hooks: # perform ops after chroot is set up and pkgs installed
+  # cleanup-hooks:   # perform ops after all other hooks
+  packages:
+    - build-essential
+    - python3-pip
+    - vim
+  install-recommends: false
