@@ -24,6 +24,29 @@ print_error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
+generate_opts_file() {
+    local recipe_name="$1"
+    local recipe_dir="/home/imagegen/recipes/$recipe_name"
+
+    cp "$recipe_dir/my.options.tmpl" "$recipe_dir/my.options"
+}
+
+set_user_opts() {
+    local recipe_name="$1"
+
+    echo
+    read -p "Enter a hostname: " hostname
+    read -p "Enter a username: " username
+    read -p "Enter a password: " password
+    echo
+
+    opts_file="/home/imagegen/recipes/$recipe_name/my.options"
+
+    echo "device_hostname=$hostname" >> $opts_file
+    echo "device_user1=$username" >> $opts_file
+    echo "device_user1pass=$password" >> $opts_file
+}
+
 mount_binfmt_misc() {
     print_info "Mounting binfmt_misc ..."
     print_warning "Enter the imagegen user's password (imagegen)!"
@@ -62,7 +85,7 @@ build_image() {
     then
         print_success "Baking finished successfully!"
 
-        out_dir="/home/imagegen/out/$(date +'%d%m%Y-%H%M%S')"
+        out_dir="/home/imagegen/_out/$(date +'%d%m%Y-%H%M%S')"
         print_info "Creating output directory: $out_dir"
 
         if mkdir -p "$out_dir" && cd "$out_dir";
@@ -95,7 +118,8 @@ main() {
                    __/ |
                   |___/
 EOF
-
+    generate_opts_file "$recipe_name"
+    set_user_opts "$recipe_name"
     # TODO: Only run this if host has non-ARM cpu architecture.
     mount_binfmt_misc
     build_image "$recipe_name"

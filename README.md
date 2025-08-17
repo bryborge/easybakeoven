@@ -21,18 +21,21 @@ on a development system.
 
 ### Defining a New Recipe
 
-**TODO:** script out a process to easily create a new recipe from template
+**TODO:** script out a process to easily create a new recipe from base.
 
 TBD ...
 
-### Generating an Artifact
+### Baking an Artifact
 
-To kick off the artifact generation process, simply run the `generate.sh`
-convenience script at the root of the project and pass in the name of the
-recipe you want to generate an artifact against.
+1.  You'll want to set the `device_hostname`, `device_user1`, and
+    `device_user1pass` in the `my.options` file for your preferred recipe.
 
-For example, generate an image from the provided template recipe:
+2.  To kick off the artifact generation process, simply run the `bake.sh`
+    convenience script at the root of the project and pass in the name of the
+    recipe you want to follow.
 
-```sh
-./generate.sh _template
-```
+    For example, generate an image from the provided base recipe:
+
+    ```sh
+    ./bake.sh base
+    ```

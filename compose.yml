@@ -9,5 +9,5 @@ services:
     image: rpi-imagegen:latest
     working_dir: /home/imagegen/rpi-image-gen
     volumes:
-      - ./_out:/home/imagegen/out
+      - ./_out:/home/imagegen/_out
       - ./recipes:/home/imagegen/recipes
